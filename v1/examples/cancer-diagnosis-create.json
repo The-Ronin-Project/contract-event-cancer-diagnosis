@@ -1,0 +1,50 @@
+{
+  "create": {
+    "id": "h387afy7-43CC-A563-4C45931E9530",
+    "tenantId": "h387afy7",
+    "fhirId": "43CC-A563-4C45931E9530",
+    "resourceVersion": "2022090912432146",
+    "derivedFrom":[
+      {
+        "reference": "RoninConditionProblemsHealthConcerns/h387afy7-78273478",
+        "resource": {
+          "type": "RoninConditionProblemsHealthConcerns",
+          "id": "h387afy7-78273478"
+        }
+      }
+    ],
+    "diagnosisDate": "2021/03/04",
+    "isPrimary": true,
+    "isActive": true,
+    "cancerType": {
+      "coding": [
+        {
+          "system": "https://www.nccn.org/",
+          "version": "2023",
+          "code": "Thyroid Cancer",
+          "display": "Thyroid Cancer"
+        }
+      ],
+      "emrText": "Thyroid Cancer"
+    },
+    "category": "Cancer Diagnosis",
+    "code": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/sid/icd-910-cm/diagnosis",
+          "code": "C73",
+          "display": "Malignant neoplasm of thyroid gland"
+        }
+      ]
+    },
+    "subject": {
+      "reference": "RoninPatient/h387afy7-78273478",
+      "resource": {
+        "type": "RoninPatient",
+        "id": "h387afy7-78273478"
+      }
+    },
+    "createdAt": "2022-09-13T12:14:15",
+    "updatedAt": "2022-09-13T12:14:15"
+  }
+} 

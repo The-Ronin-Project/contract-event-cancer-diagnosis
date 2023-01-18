@@ -1,0 +1,204 @@
+{
+  "$id": "https://github.com/projectronin/contract-event-cancer-diagnosis/blob/main/v1/cancer-diagnosis-v1.schema.json",
+  "title": "Cancer Diagnosis",
+  "description": "This designates that a referenced Condition resource is a cancer diagnosis",
+  "type": "object",
+  "properties": {
+    "create" : {
+      "description": "This represents a create event.",
+      "$ref": "#/$defs/cancerDiagnosis"
+    },
+    "update": {
+      "description": "This represents an update event",
+      "$ref": "#/$defs/cancerDiagnosis"
+    },
+    "delete": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The primary identifier of the resource"
+        },
+        "tenantId": {
+          "type": "string",
+          "description": "Tenant ID"
+        },
+        "deletedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time when the resource was deleted"
+        }
+      },
+      "required": ["id", "tenantId", "deletedAt"]
+    }
+  },
+  "$defs":  {
+    "identifier": {
+      "type": "object",
+      "properties": {
+        "use": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/codeableConcept"
+        },
+        "system": {
+          "type": "string",
+          "format": "uri"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "coding": {
+      "type": "object",
+      "description": "This defines the required attributed for a FHIR code",
+      "properties": {
+        "system": {
+          "description": "The coding system that defines what the code represents",
+          "type": "string"
+        },
+        "code": {
+          "description": "The specific code determined by the system that specifies the value.",
+          "type": "string"
+        },
+        "display": {
+          "description": "The human readable value for the code",
+          "type": "string"
+        },
+        "version": {
+          "description": "The specific version of the system where the code is defined",
+          "type": "string"
+        }
+      }
+    },
+    "codeableConcept": {
+      "type":"object",
+      "description": "This is a CodeableConcept with an extracted emrText attribute that dictates the correct value to represent in an EMR context.",
+      "properties": {
+        "emrText": {
+          "type": "string"
+        },
+        "coding": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/coding"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "resourceReference": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "type": "object",
+          "description": "When this exists, it represents a reference to an actual resource. This is derived from the data specified in `reference`.",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "This is the ronin resource type"
+            },
+            "id": {
+              "type": "string",
+              "description": "This is the ronin ID for the resource"
+            }
+          }
+        },
+        "type": {
+          "type": "string",
+          "description": "The FHIR type attribute of the resource"
+        },
+        "reference": {
+          "type": "string",
+          "format": "uri-template",
+          "description": "This should refer to a `resource.type/resource.id` but could refer to an external resource"
+        },
+        "identifier": {
+          "$ref": "#/$defs/identifier"
+        },
+        "display": {
+          "type": "string"
+        }
+      }
+    },
+    "cancerDiagnosis": {
+      "type": "object",
+      "description": "The resource representation",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "CancerDiagnosis ID"
+        },
+        "tenantId": {
+          "type": "string",
+          "description": "The tenant ID"
+        },
+        "fhirId": {
+          "type": "string",
+          "description": "The EMR's FHIR ID"
+        },
+        "derivedFrom": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resourceReference",
+            "description": "The Condition that this resources is decorating"
+          },
+          "minItems": 1
+        },
+        "diagnosisDate": {
+          "type": "string",
+          "description": "A FHIR date representation for Ronin's unified date of diagnosis"
+        },
+        "isPrimary": {
+          "type": "boolean",
+          "description": "Whether the referenced cancer is considered a Primary Cancer Type"
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether the referenced cancer is considered active. This is derived from clinicalStatus of the referenced condition."
+        },
+        "cancerType": {
+          "$ref": "#/$defs/codeableConcept",
+          "description": "What is the cancer type as well as based on what definition"
+        },
+        "category": {
+          "type": "string",
+          "description": "Identifies this as a Cancer Diagnosis type"
+        },
+        "code": {
+          "$ref": "#/$defs/codeableConcept",
+          "description": "The product displayable codes to show with this diagnosis. Currently this is limited to ICD10 codes."
+        },
+        "subject": {
+          "$ref": "#/$defs/resourceReference",
+          "description": "The patient that this diagnosis is related to."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When was the resource created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When want the resource last updated"
+        }
+      },
+      "required": [
+        "id", 
+        "fhirId",
+        "tenantId", 
+        "resourceVersion", 
+        "derivedFrom",
+        "isPrimary",
+        "isActive",
+        "cancerType",
+        "category",
+        "subject",
+        "createdAt"
+      ]
+    }
+  }
+}
