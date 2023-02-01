@@ -70,6 +70,10 @@
         "version": {
           "description": "The specific version of the system where the code is defined",
           "type": "string"
+        },
+        "userSelected": {
+          "description": "If the coding was selected by the user",
+          "type": "boolean"
         }
       }
     },
@@ -86,6 +90,23 @@
             "$ref": "#/$defs/coding"
           },
           "minItems": 1
+        }
+      }
+    },
+    "singleCodeConcept": {
+      "type":"object",
+      "description": "This is a CodeableConcept constrained to a single code with an extracted emrText attribute that dictates the correct value to represent in an EMR context.",
+      "properties": {
+        "emrText": {
+          "type": "string"
+        },
+        "coding": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/coding"
+          },
+          "minItems": 1,
+          "maxItems": 1
         }
       }
     },
@@ -160,7 +181,7 @@
           "description": "Whether the referenced cancer is considered active. This is derived from clinicalStatus of the referenced condition."
         },
         "cancerType": {
-          "$ref": "#/$defs/codeableConcept",
+          "$ref": "#/$defs/singleCodeConcept",
           "description": "What is the cancer type as well as based on what definition"
         },
         "category": {
