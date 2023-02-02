@@ -18,7 +18,7 @@
     "cancerType": {
       "coding": [
         {
-          "system": "https://www.nccn.org/",
+          "system": "NCCN",
           "version": "2023",
           "code": "Thyroid Cancer",
           "display": "Thyroid Cancer"

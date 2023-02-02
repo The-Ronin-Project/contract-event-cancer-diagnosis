@@ -13,13 +13,13 @@
         }
       }
     ],
-    "diagnosisDate": "2021/03/04",
+    "diagnosisDate": "2021-03-04",
     "isPrimary": true,
     "isActive": true,
     "cancerType": {
       "coding": [
         {
-          "system": "https://www.nccn.org/",
+          "system": "NCCN",
           "version": "2023",
           "code": "Thyroid Cancer",
           "display": "Thyroid Cancer"
@@ -31,7 +31,7 @@
     "code": {
       "coding": [
         {
-          "system": "http://hl7.org/fhir/sid/icd-910-cm/diagnosis",
+          "system": "http://hl7.org/fhir/sid/icd-10-cm/diagnosis",
           "code": "C73",
           "display": "Malignant neoplasm of thyroid gland"
         }
