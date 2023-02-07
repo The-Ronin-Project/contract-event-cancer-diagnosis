@@ -190,7 +190,7 @@
         },
         "code": {
           "$ref": "#/$defs/codeableConcept",
-          "description": "The product displayable codes to show with this diagnosis. Currently this is limited to ICD10 codes."
+          "description": "The product displayable codes to show with this diagnosis. Currently this is limited to ICD10 CM codes."
         },
         "subject": {
           "$ref": "#/$defs/resourceReference",
