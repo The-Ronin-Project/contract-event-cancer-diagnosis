@@ -93,20 +93,16 @@
         }
       }
     },
-    "singleCodeConcept": {
+    "noEmrTextCodeableConcept": {
       "type":"object",
-      "description": "This is a CodeableConcept constrained to a single code with an extracted emrText attribute that dictates the correct value to represent in an EMR context.",
+      "description": "This is a CodeableConcept without an extracted emrText attribute.",
       "properties": {
-        "emrText": {
-          "type": "string"
-        },
         "coding": {
           "type": "array",
           "items": {
             "$ref": "#/$defs/coding"
           },
-          "minItems": 1,
-          "maxItems": 1
+          "minItems": 1
         }
       }
     },
@@ -181,7 +177,7 @@
           "description": "Whether the referenced cancer is considered active. This is derived from clinicalStatus of the referenced condition."
         },
         "cancerType": {
-          "$ref": "#/$defs/singleCodeConcept",
+          "$ref": "#/$defs/coding",
           "description": "What is the cancer type as well as based on what definition"
         },
         "category": {
@@ -189,7 +185,7 @@
           "description": "Identifies this as a Cancer Diagnosis type"
         },
         "code": {
-          "$ref": "#/$defs/codeableConcept",
+          "$ref": "#/$defs/noEmrTextCodeableConcept",
           "description": "The product displayable codes to show with this diagnosis. Currently this is limited to ICD10 CM codes."
         },
         "subject": {

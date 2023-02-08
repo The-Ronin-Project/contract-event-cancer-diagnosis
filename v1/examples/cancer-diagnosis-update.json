@@ -16,15 +16,10 @@
     "isPrimary": true,
     "isActive": true,
     "cancerType": {
-      "coding": [
-        {
-          "system": "NCCN",
-          "version": "2023",
-          "code": "Thyroid Cancer",
-          "display": "Thyroid Cancer"
-        }
-      ],
-      "emrText": "Thyroid Cancer"
+      "system": "NCCN",
+      "version": "2023",
+      "code": "Thyroid Cancer",
+      "display": "Thyroid Cancer"
     },
     "category": "Cancer Diagnosis",
     "subject": {
